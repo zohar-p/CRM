@@ -1,8 +1,9 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import data from './data.json'
+import axios from 'axios'
 
 function App() {
+  
   return (
     <div className="App">
 
