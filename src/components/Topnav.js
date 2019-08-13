@@ -1,13 +1,37 @@
-import React, { Component } from 'react'
+import React from 'react'
+import ReactDOM from 'react-dom'
+import { Link } from 'react-router-dom'
+import { makeStyles } from '@material-ui/core/styles'
+import { AppBar, Toolbar, Typography, Button, IconButton} from '@material-ui/core';
+import './Topnav.scss'
 
-export class Topnav extends Component {
-    render() {
-        return (
-            <div className='Topnav'>
-                
-            </div>
-        )
+const useStyles = makeStyles(theme => ({
+    btn: {
+        textDecoration: 'none',
+
     }
+}))
+
+function Topnav() {
+    const classes = useStyles()
+
+    return (
+        <div className='Topnav'>
+            <AppBar position="fixed">
+                <Toolbar>
+                    <Link className={classes.btn} to='/clients'>
+                        <Button>Client</Button>
+                    </Link>
+                    <Link className={classes.btn} to='/actions'>
+                        <Button>Actions</Button>
+                    </Link>
+                    <Link className={classes.btn} to='/analytics'>
+                        <Button>Analytics</Button>
+                    </Link>
+                </Toolbar>
+            </AppBar>
+        </div>
+    )
 }
 
 export default Topnav
