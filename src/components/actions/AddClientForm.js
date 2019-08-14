@@ -15,7 +15,7 @@ const useStyles = makeStyles(theme => ({
     }
 }))
 
-function AddClientForm() {
+function AddClientForm(props) {
     const classes = useStyles()
     return (
         <Paper className={classes.root}>
