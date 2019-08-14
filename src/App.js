@@ -6,6 +6,7 @@ import axios from 'axios'
 import Topnav from './components/Topnav'
 import ClientsTable from './components/clients/ClientsTable'
 import Actions from './components/actions/Actions'
+import Analytics from './components/analytics/Analytics'
 import './App.scss'
 
 export const ClientsContext = React.createContext()
@@ -37,6 +38,7 @@ function App() {
             <Route exact path='/actions' render={() => <Actions />} />
           </EmailTypesContext.Provider>
         </OwnersContext.Provider>
+        <Route exact path='/analytics' render={() => <Analytics />} />
       </Router>
     </div>
   );
