@@ -1,5 +1,4 @@
-import React, { useState, useContext } from 'react'
-import { OwnersContext, EmailTypesContext } from '../../App.js'
+import React, { useState } from 'react'
 import { TextField, FormGroup, FormControl, Paper, FormLabel, Button, Grid, Select, MenuItem, Typography } from '@material-ui/core';
 import { makeStyles } from '@material-ui/styles';
 import ClientNameInput from './ClientNameInput'
@@ -20,8 +19,8 @@ const useStyles = makeStyles(theme => ({
 function UpdateClientForm(props) {
     const classes = useStyles()
 
-    const owners = useContext(OwnersContext)
-    const emailTypes = useContext(EmailTypesContext)
+    const [owner, setOwner] = useState('')
+    const [email, setEmail] = useState('')
     
     return (
         <Paper className={classes.root}>
@@ -34,7 +33,7 @@ function UpdateClientForm(props) {
                             <Typography variant='body1'>Transfer Ownership To</Typography>
                         </Grid>
                         <Grid item>
-                            <SelectInput options={owners} for='owner'/>
+                            <SelectInput for='owner' setValue={setOwner}/>
                         </Grid>
                         <Grid item>
                             <Button className={classes.btn} variant='contained' color='secondary'>Transfer</Button>
@@ -45,7 +44,7 @@ function UpdateClientForm(props) {
                             <Typography variant='body1'>Send Email</Typography>
                         </Grid>
                         <Grid item>
-                            <SelectInput options={emailTypes} for='email'/>
+                            <SelectInput for='email' setValue={setEmail}/>
                         </Grid>
                         <Grid item>
                             <Button className={classes.btn} variant='contained' color='secondary'>Send</Button>
