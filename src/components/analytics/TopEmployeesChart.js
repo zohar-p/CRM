@@ -1,14 +1,9 @@
-import React, { useContext } from 'react'
-import { ClientsContext } from '../../App'
+import React from 'react'
 import { BarChart, Bar, CartesianGrid, XAxis, YAxis, ResponsiveContainer, Tooltip } from 'recharts'
 import { Grid, Paper, Typography } from '@material-ui/core'
 
 
 function TopEmployeesChart(props) {
-
-    // const data = useContext(ClientsContext)
-    let SalesPerOwner = {}
-    let chartData = []
 
     return (
         <Grid item xs={12} md={6}>

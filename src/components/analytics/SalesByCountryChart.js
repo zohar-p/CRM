@@ -1,5 +1,4 @@
-import React, { useContext } from 'react'
-import { ClientsContext } from '../../App'
+import React from 'react'
 import { PieChart, Pie, Cell, LabelList, Tooltip, ResponsiveContainer } from 'recharts'
 import { Grid, Paper, Typography } from '@material-ui/core'
 

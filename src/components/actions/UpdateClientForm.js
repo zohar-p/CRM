@@ -2,16 +2,12 @@ import React, { useState } from 'react'
 import axios from 'axios'
 import ClientNameInput from './ClientNameInput'
 import SelectInput from './SelectInput'
-import { TextField, FormGroup, FormControl, Paper, FormLabel, Button, Grid, Select, MenuItem, Typography } from '@material-ui/core';
+import { Paper, FormGroup, FormLabel, Button, Grid, Typography } from '@material-ui/core';
 import { makeStyles } from '@material-ui/styles';
 
 const useStyles = makeStyles(theme => ({
     root: {
         padding: '2rem',
-        height: '100%'
-    },
-    formControl: {
-        width: '100%',
         height: '100%'
     }
 }))

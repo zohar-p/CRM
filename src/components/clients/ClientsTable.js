@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext } from 'react'
-import { ClientsContext } from '../../App'
+import { ClientsContext, GetClientsContext } from '../../App'
 import { makeStyles } from '@material-ui/core/styles';
 import { Table, TableBody, Paper, Container} from '@material-ui/core';
 import ClientsHeaders from './ClientsHeaders';
@@ -19,6 +19,11 @@ function ClientsTable(props) {
     const classes = useStyles()
 
     const clients = useContext(ClientsContext)
+    const getAllClients = useContext(GetClientsContext)
+
+    useEffect(() => {
+        getAllClients()
+    }, [])
     
     return (
         <Container className='ClientsTable'>

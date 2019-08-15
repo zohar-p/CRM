@@ -1,11 +1,10 @@
 import React from 'react'
-import { makeStyles } from '@material-ui/core/styles';
-import { TableBody, TableCell, TableRow} from '@material-ui/core';
+import { TableCell, TableRow} from '@material-ui/core';
 
 function ClientRow(props) {
     return (
         <TableRow className='ClientRow'>
-            <TableCell>{props.client.name}</TableCell>
+            <TableCell component="th" scope="row">{props.client.name}</TableCell>
             <TableCell>{props.client.firstContact}</TableCell>
             <TableCell>{props.client.email}</TableCell>
             <TableCell>{props.client.emailType}</TableCell>
