@@ -1,8 +1,9 @@
 import React, { useState } from 'react'
-import { TextField, FormGroup, FormControl, Paper, FormLabel, Button, Grid, Select, MenuItem, Typography } from '@material-ui/core';
-import { makeStyles } from '@material-ui/styles';
+import axios from 'axios'
 import ClientNameInput from './ClientNameInput'
 import SelectInput from './SelectInput'
+import { TextField, FormGroup, FormControl, Paper, FormLabel, Button, Grid, Select, MenuItem, Typography } from '@material-ui/core';
+import { makeStyles } from '@material-ui/styles';
 
 const useStyles = makeStyles(theme => ({
     root: {
@@ -19,15 +20,20 @@ const useStyles = makeStyles(theme => ({
 function UpdateClientForm(props) {
     const classes = useStyles()
 
+    const [clientName, setClientName] = useState('')
     const [owner, setOwner] = useState('')
     const [email, setEmail] = useState('')
+
+    const updateClient = (action) => {
+        const updatedInfo = action === 'transfer' ? {owner} : action === 'send' ? {emailType: email} : action === 'sold' ? {sold: true} : null
+        axios.put('http://localhost:4000/client/' + clientName, updatedInfo)
+    }
     
     return (
         <Paper className={classes.root}>
-            <FormControl component='fieldset' className={classes.formControl}>
                 <FormLabel component='legend'>Update Client</FormLabel>
                 <FormGroup>
-                    <ClientNameInput />
+                    <ClientNameInput value={clientName} setValue={setClientName}/>
                     <Grid container alignItems='center' justify='space-between'>
                         <Grid item>
                             <Typography variant='body1'>Transfer Ownership To</Typography>
@@ -36,7 +42,7 @@ function UpdateClientForm(props) {
                             <SelectInput for='owner' setValue={setOwner}/>
                         </Grid>
                         <Grid item>
-                            <Button className={classes.btn} variant='contained' color='secondary'>Transfer</Button>
+                            <Button className={classes.btn} onClick={() => updateClient('transfer')} variant='contained' color='secondary'>Transfer</Button>
                         </Grid>
                     </Grid>
                     <Grid container alignItems='center' justify='space-between'>
@@ -47,7 +53,7 @@ function UpdateClientForm(props) {
                             <SelectInput for='email' setValue={setEmail}/>
                         </Grid>
                         <Grid item>
-                            <Button className={classes.btn} variant='contained' color='secondary'>Send</Button>
+                            <Button className={classes.btn} onClick={() => updateClient('send')} variant='contained' color='secondary'>Send</Button>
                         </Grid>
                     </Grid>
                     <Grid container alignItems='center' justify='space-between'>
@@ -57,11 +63,10 @@ function UpdateClientForm(props) {
                         <Grid item>
                         </Grid>
                         <Grid item>
-                            <Button className={classes.btn} variant='contained' color='secondary'>Sold!</Button>
+                            <Button className={classes.btn} onClick={() => updateClient('sold')} variant='contained' color='secondary'>Sold!</Button>
                         </Grid>
                     </Grid>
                 </FormGroup>
-            </FormControl>
         </Paper>
     )
 }
