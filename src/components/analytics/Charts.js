@@ -1,14 +1,14 @@
 import React from 'react'
 import { Paper, Grid } from '@material-ui/core'
 import SingleChart from './SingleChart'
+import TopEmployeesChart from './TopEmployeesChart';
 
 function Charts() {
     return (
-        <Paper>
-            <Grid container spacing={3}>
-                <SingleChart />
-            </Grid>
-        </Paper>
+        <Grid container spacing={3}>
+            <TopEmployeesChart />
+            <SingleChart />
+        </Grid>
     )
 }
 
