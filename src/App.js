@@ -18,17 +18,29 @@ function App() {
   const owners = ['Emily Durham', 'Janice Alvarado', 'Leila Howe', 'Hull Conrad', 'Shepherd Stone', 'Martin Massey', 'Barton Ramirez']
   const emailTypes = ['A', 'B', 'C', 'D']
 
+  const [clients, setClients] = useState([])    
+
+  useEffect(() => {
+      const getAllClients = async () => {
+        const allClients = await axios.get('http://localhost:4000/clients')
+        setClients(allClients.data)
+      }
+      getAllClients()
+  }, [])
+
   return (
     <div className="App">
       <Router>
         <Route path='/' render={() => <Topnav />} />
-        <OwnersContext.Provider value={owners}>
-          <Route exact path='/clients' render={() => <ClientsTable />} />
-          <EmailTypesContext.Provider value={emailTypes}>
-            <Route exact path='/actions' render={() => <Actions />} />
-          </EmailTypesContext.Provider>
-        </OwnersContext.Provider>
-        <Route exact path='/analytics' render={() => <Analytics />} />
+        <ClientsContext.Provider value={clients}>
+          <OwnersContext.Provider value={owners}>
+            <Route exact path='/clients' render={() => <ClientsTable />} />
+            <EmailTypesContext.Provider value={emailTypes}>
+              <Route exact path='/actions' render={() => <Actions />} />
+            </EmailTypesContext.Provider>
+          </OwnersContext.Provider>
+          <Route exact path='/analytics' render={() => <Analytics />} />
+        </ClientsContext.Provider>
       </Router>
     </div>
   );

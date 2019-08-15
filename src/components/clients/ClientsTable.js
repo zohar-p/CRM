@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react'
-import axios from 'axios'
+import React, { useState, useEffect, useContext } from 'react'
+import { ClientsContext } from '../../App'
 import { makeStyles } from '@material-ui/core/styles';
 import { Table, TableBody, Paper, Container} from '@material-ui/core';
 import ClientsHeaders from './ClientsHeaders';
@@ -18,16 +18,8 @@ const useStyles = makeStyles(theme => ({
 function ClientsTable(props) {
     const classes = useStyles()
 
-    const [clients, setClients] = useState([])    
-
-    useEffect(() => {
-        const getAllClients = async () => {
-          const allClients = await axios.get('http://localhost:4000/clients')
-          setClients(allClients.data)
-        }
-        getAllClients()
-    }, [])
-
+    const clients = useContext(ClientsContext)
+    
     return (
         <Container className='ClientsTable'>
             <Paper className={classes.root}>

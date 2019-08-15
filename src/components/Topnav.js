@@ -20,7 +20,7 @@ function Topnav() {
             <AppBar position="fixed">
                 <Toolbar>
                     <Link className={classes.btn} to='/clients'>
-                        <Button>Client</Button>
+                        <Button>Clients</Button>
                     </Link>
                     <Link className={classes.btn} to='/actions'>
                         <Button>Actions</Button>
