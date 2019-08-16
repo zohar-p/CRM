@@ -23,7 +23,7 @@ function SingleBadge(props) {
                     <Typography variant='body1' align='center'>{props.title}</Typography>
                 </Grid>
                 <Grid item>
-                    <Typography variant='body2' align='center'>14</Typography>
+                    <Typography variant='body2' align='center'>{props.value}</Typography>
                 </Grid>
             </Grid>
         </Grid>

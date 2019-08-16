@@ -1,4 +1,6 @@
-import React from 'react'
+import React, { useContext } from 'react'
+import { ClientsContext } from '../../App'
+import { FormatDataContext } from './Analytics'
 import { Grid, Card, CardContent } from '@material-ui/core'
 import { makeStyles } from '@material-ui/core/styles'
 import SingleBadge from './SingleBadge'
@@ -9,16 +11,44 @@ const useStyles = makeStyles(theme => ({
     }
 }))
 
-function Badges() {
+function Badges(props) {
     const classes = useStyles()
+
+    const data = useContext(ClientsContext)
+    const formatDataSalesByGroup = useContext(FormatDataContext)
+
+    const calcNewClients = () => {
+        let newClients
+        newClients = data.length
+        return newClients
+    }
+
+    const calcEmailsSent = () => {
+        let emailsSent = data.filter(d => d.emailType).length
+        return emailsSent
+    }
+
+    const calcOutstandingClients = () => {
+        let outstandingCostumers = data.filter(d => !d.sold).length
+        return outstandingCostumers
+    }
+    
+    const calcHottestCountry = () => {
+        const countriesData = formatDataSalesByGroup('country')
+        if(countriesData.length){
+            const hottestCountry = countriesData.reduce((a, b) => a.sales > b.sales ? a : b)
+            return hottestCountry.group
+        }
+    }
+    
     return (
         <Card className={classes.root}>
             <CardContent>
             <Grid container justify='space-around' spacing={4}>
-                <SingleBadge title='New Clients' icon='monetization_on' />
-                <SingleBadge title='Emails Sent' icon='mail_circle' />
-                <SingleBadge title='Outstanding Clients' icon='group' />
-                <SingleBadge title='Hottest Country' icon='whatshot' />
+                <SingleBadge title='New Clients' icon='monetization_on' value={calcNewClients()}/>
+                <SingleBadge title='Emails Sent' icon='mail_circle' value={calcEmailsSent()}/>
+                <SingleBadge title='Outstanding Clients' icon='group' value={calcOutstandingClients()}/>
+                <SingleBadge title='Hottest Country' icon='whatshot' value={calcHottestCountry()}/>
             </Grid>
             </CardContent>
         </Card>
