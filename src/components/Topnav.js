@@ -2,7 +2,7 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import { Link } from 'react-router-dom'
 import { makeStyles } from '@material-ui/core/styles'
-import { AppBar, Toolbar, Typography, Button, IconButton} from '@material-ui/core';
+import { AppBar, Toolbar, Typography, Button } from '@material-ui/core';
 import './Topnav.scss'
 
 const useStyles = makeStyles(theme => ({
@@ -20,7 +20,7 @@ function Topnav() {
             <AppBar position="fixed">
                 <Toolbar>
                     <Link className={classes.btn} to='/clients'>
-                        <Button>Client</Button>
+                        <Button>Clients</Button>
                     </Link>
                     <Link className={classes.btn} to='/actions'>
                         <Button>Actions</Button>

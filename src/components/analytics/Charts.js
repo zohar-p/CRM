@@ -1,14 +1,18 @@
-import React from 'react'
-import { Paper, Grid } from '@material-ui/core'
-import SingleChart from './SingleChart'
+import React, { useContext } from 'react'
+import { FormatDataContext } from './Analytics'
+import TopEmployeesChart from './TopEmployeesChart';
+import SalesByCountryChart from './SalesByCountryChart';
+import { Grid } from '@material-ui/core'
 
-function Charts() {
+function Charts() {    
+
+    const formatDataSalesByGroup = useContext(FormatDataContext)
+
     return (
-        <Paper>
-            <Grid container spacing={3}>
-                <SingleChart />
-            </Grid>
-        </Paper>
+        <Grid container spacing={3}>
+            <TopEmployeesChart data={formatDataSalesByGroup('owner')} />
+            <SalesByCountryChart data={formatDataSalesByGroup('country')} />
+        </Grid>
     )
 }
 
