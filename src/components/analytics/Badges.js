@@ -14,22 +14,22 @@ const useStyles = makeStyles(theme => ({
 function Badges(props) {
     const classes = useStyles()
 
-    const data = useContext(ClientsContext)
+    // const data = useContext(ClientsContext)
     const formatDataSalesByGroup = useContext(FormatDataContext)
 
     const calcNewClients = () => {
         let newClients
-        newClients = data.length
+        newClients = props.data.length
         return newClients
     }
 
     const calcEmailsSent = () => {
-        let emailsSent = data.filter(d => d.emailType).length
+        let emailsSent = props.data.filter(d => d.emailType).length
         return emailsSent
     }
 
     const calcOutstandingClients = () => {
-        let outstandingCostumers = data.filter(d => !d.sold).length
+        let outstandingCostumers = props.data.filter(d => !d.sold).length
         return outstandingCostumers
     }
     

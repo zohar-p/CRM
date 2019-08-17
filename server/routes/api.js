@@ -3,8 +3,18 @@ const router = express.Router()
 const Client = require('../models/Client')
 
 router.get('/clients', async (req, res) => {
-    const allClients = await Client.find({})
-    res.send(allClients)
+    let clients
+    if(req.query.from && req.query.to){
+        clients = await Client.find({
+            firstContact: {
+                $gt: req.query.from,
+                $lt: req.query.to
+            }
+        })
+    } else {
+        clients = await Client.find({})
+    }
+    res.send(clients)
 })
 
 router.get('/client/:clientName', async (req, res) => {

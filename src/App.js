@@ -21,7 +21,7 @@ function App() {
 
   const [clients, setClients] = useState([])    
 
-  const getAllClients = async () => {
+  const getAllClients = async query => {
     const allClients = await axios.get('http://localhost:4000/clients')
     setClients(allClients.data)
   }

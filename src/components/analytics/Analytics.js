@@ -2,13 +2,17 @@ import React, { useEffect, useState, useContext, createContext } from 'react'
 import { GetClientsContext, ClientsContext } from '../../App'
 import Badges from './Badges'
 import Charts from './Charts'
+import DatePicker from './DatePicker'
+import moment from 'moment'
+import axios from 'axios'
 import { Container } from '@material-ui/core'
 
 export const FormatDataContext = createContext()
 
 function Analytics() {
 
-    const data = useContext(ClientsContext)
+    const [dates, setDates] = useState({})
+    const [data, setData] = useState([])
 
 
     const formatDataSalesByGroup = (group) => {
@@ -36,12 +40,16 @@ function Analytics() {
     const getAllClients = useContext(GetClientsContext)
 
     useEffect(() => {
-        getAllClients()
-    }, [])
+        if(dates.from){
+            const clients = axios.get(`http://localhost:4000/clients/?from=${dates.from}&to=${dates.to}`)
+            clients.then(res => setData(res.data))
+        }
+    }, [dates])
     return (
         <Container className='Analytics'>
+            <DatePicker setDates={setDates} />
             <FormatDataContext.Provider value={formatDataSalesByGroup}>
-                <Badges />
+                <Badges data={data} />
                 <Charts />
             </FormatDataContext.Provider>
         </Container>
