@@ -32,7 +32,12 @@ function AddClientForm(props) {
         const name = formatName(firstName, lastName)
         const clientInfo = {name, email, country, owner, firstContact: new Date(), emailType: null, sold: false}
         axios.post('http://localhost:4000/client', clientInfo)
-        
+        console.log('ran')
+        setFirstName('')
+        setLastName('')
+        setEmail('')
+        setCountry('')
+        setOwner('')
     }
 
     return (

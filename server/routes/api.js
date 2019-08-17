@@ -33,6 +33,8 @@ router.post('/client', async (req, res) => {
 router.put('/client/:clientName', async (req, res) => {
     const { clientName } = req.params
     const updatedInfo = req.body
+    console.log(clientName)
+    console.log(updatedInfo)
     await Client.updateOne({name: clientName}, updatedInfo)
     res.send(updatedInfo)
 })
