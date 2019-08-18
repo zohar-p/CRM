@@ -1,33 +1,28 @@
-import React from 'react'
-import ReactDOM from 'react-dom'
+import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
-import { makeStyles } from '@material-ui/core/styles'
 import { AppBar, Toolbar, Typography, Button } from '@material-ui/core';
-import './Topnav.scss'
+import TopnavLink from './TopnavLink';
+import { makeStyles } from '@material-ui/core/styles'
 
 const useStyles = makeStyles(theme => ({
-    btn: {
-        textDecoration: 'none',
-
+    active: {
+        color: 'white'
     }
 }))
 
+
 function Topnav() {
     const classes = useStyles()
+
+    const [currentPage, setCurrentPage] = useState(0)
 
     return (
         <div className='Topnav'>
             <AppBar position="fixed">
                 <Toolbar>
-                    <Link className={classes.btn} to='/clients'>
-                        <Button>Clients</Button>
-                    </Link>
-                    <Link className={classes.btn} to='/actions'>
-                        <Button>Actions</Button>
-                    </Link>
-                    <Link className={classes.btn} to='/analytics'>
-                        <Button>Analytics</Button>
-                    </Link>
+                    <TopnavLink name='clients' className={currentPage === 'clients' ? classes.active : null} setCurrentPage={setCurrentPage} />
+                    <TopnavLink name='actions' className={currentPage === 'actions' ? classes.active : null} setCurrentPage={setCurrentPage} />
+                    <TopnavLink name='analytics' className={currentPage === 'analytics' ? classes.active : null} setCurrentPage={setCurrentPage} />
                 </Toolbar>
             </AppBar>
         </div>
