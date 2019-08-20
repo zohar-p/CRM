@@ -7,7 +7,9 @@ import ClientsTable from './components/clients/ClientsTable'
 import Actions from './components/actions/Actions'
 import Analytics from './components/analytics/Analytics'
 import './App.scss'
+import Notifier from './components/Notifier';
 
+export const NotifierContext = createContext()
 export const GetClientsContext = createContext()
 export const ClientsContext = createContext()
 export const OwnersContext = createContext()
@@ -19,6 +21,8 @@ function App() {
   const emailTypes = ['A', 'B', 'C', 'D']
 
   const [clients, setClients] = useState([])    
+  const [notifier, setNotifier] = useState(false)
+  const [msg, setMsg] = useState('')
 
   const getAllClients = async () => {
     const allClients = await axios.get('http://localhost:4000/clients')
@@ -29,6 +33,7 @@ function App() {
     <div className="App">
       <Router>
         <Route path='/' render={() => <Topnav />} />
+        <NotifierContext.Provider value={{setNotifier, setMsg}}>
         <ClientsContext.Provider value={clients}>
             <GetClientsContext.Provider value={getAllClients}>
             <OwnersContext.Provider value={owners}>
@@ -40,7 +45,9 @@ function App() {
             <Route exact path='/analytics' render={() => <Analytics />} />
           </GetClientsContext.Provider>
         </ClientsContext.Provider>
+        </NotifierContext.Provider>
       </Router>
+      <Notifier open={notifier} setNotifier={setNotifier} msg={msg} />
     </div>
   );
 }

@@ -14,7 +14,6 @@ const useStyles = makeStyles(theme => ({
 function Badges(props) {
     const classes = useStyles()
 
-    // const data = useContext(ClientsContext)
     const formatDataSalesByGroup = useContext(FormatDataContext)
 
     const calcNewClients = () => {

@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext } from 'react'
-import { ClientsContext, GetClientsContext } from './../../App'
+import { ClientsContext, GetClientsContext, NotifierContext } from './../../App'
 import SelectInput from './SelectInput'
 import axios from 'axios'
 import Select from 'react-select'
@@ -20,6 +20,7 @@ function UpdateClientForm(props) {
     const [owner, setOwner] = useState('')
     const [email, setEmail] = useState('')
     const [clientName, setClientName] = useState('')
+    const {setNotifier, setMsg} = useContext(NotifierContext)
     const getAllClients = useContext(GetClientsContext)
     const clients = useContext(ClientsContext)
     const clientNames = clients.map(c => { return {value: c.name, label: c.name}})
@@ -29,7 +30,20 @@ function UpdateClientForm(props) {
     }, [])
 
     const updateClient = (action) => {
-        const updatedInfo = action === 'transfer' ? {owner} : action === 'send' ? {emailType: email} : action === 'sold' ? {sold: true} : null
+        let updatedInfo
+        if(action === 'transfer'){
+            updatedInfo = {owner}
+            setMsg(`${clientName} was transfered to ${owner}`)    
+            setNotifier(true)
+        } else if (action === 'send'){
+            updatedInfo = {emailType: email}
+            setMsg(`${email} type email was sent to ${clientName}`)    
+            setNotifier(true)
+        } else if (action === 'sold'){
+            updatedInfo = {sold: true}
+            setMsg(`${clientName} has purchased the product!`)    
+            setNotifier(true)
+        }
         axios.put('http://localhost:4000/client/' + clientName, updatedInfo)
     }
     

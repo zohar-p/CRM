@@ -1,6 +1,7 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
 import axios from 'axios'
 import { Button, TextField, Dialog, DialogActions, DialogContent, DialogTitle } from '@material-ui/core';
+import { NotifierContext } from '../../App';
 
 function UpdateDetailsPopup(props) {
 
@@ -8,6 +9,7 @@ function UpdateDetailsPopup(props) {
   const [firstName, setFirstName] = useState('')
   const [lastName, setLastName] = useState('')
   const [country, setCountry] = useState('')
+  const {setNotifier, setMsg} = useContext(NotifierContext)
 
   useEffect(() => {
       setOpen(props.dialog)
@@ -24,6 +26,8 @@ function UpdateDetailsPopup(props) {
   const updateClient = async () => {
       handleClose()
       await axios.put('http://localhost:4000/client/' + props.firstName+' '+props.lastName, {name: firstName+' '+lastName, country} )
+      setMsg(`${firstName} ${lastName} was updated`)    
+      setNotifier(true)
       props.getAllClients()
   }
 
