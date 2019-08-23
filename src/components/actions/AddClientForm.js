@@ -1,8 +1,9 @@
-import React, { useState } from 'react'
+import React, { useState, useContext } from 'react'
 import SelectInput from './SelectInput'
 import axios from 'axios'
-import { Paper, FormControl, TextField, FormGroup, FormLabel, Button, Container} from '@material-ui/core'
+import { Paper, FormControl, TextField, FormGroup, FormLabel, Button, Container, Typography} from '@material-ui/core'
 import { makeStyles } from '@material-ui/styles';
+import { NotifierContext, GetClientsContext } from '../../App';
 
 const useStyles = makeStyles(theme => ({
     root: {
@@ -25,14 +26,23 @@ function AddClientForm(props) {
     const [email, setEmail] = useState('')
     const [country, setCountry] = useState('')
     const [owner, setOwner] = useState('')
+    const {setNotifier, setMsg} = useContext(NotifierContext)
+    const getAllClients = useContext(GetClientsContext)
 
     const formatName = (firstName, lastName) => `${firstName[0].toUpperCase() + firstName.slice(1).toLowerCase()} ${lastName[0].toUpperCase() + lastName.slice(1).toLowerCase()}`
     
-    const addClient = () => {
+    const addClient = async () => {
         const name = formatName(firstName, lastName)
         const clientInfo = {name, email, country, owner, firstContact: new Date(), emailType: null, sold: false}
-        axios.post('http://localhost:4000/client', clientInfo)
-        
+        await axios.post('http://localhost:4000/client', clientInfo)
+        setMsg('Client Added')
+        setNotifier(true)
+        setFirstName('')
+        setLastName('')
+        setEmail('')
+        setCountry('')
+        setOwner('')
+        getAllClients()
     }
 
     return (

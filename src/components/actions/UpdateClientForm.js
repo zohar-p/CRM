@@ -1,7 +1,8 @@
-import React, { useState } from 'react'
-import axios from 'axios'
-import ClientNameInput from './ClientNameInput'
+import React, { useState, useEffect, useContext } from 'react'
+import { ClientsContext, GetClientsContext, NotifierContext } from './../../App'
 import SelectInput from './SelectInput'
+import axios from 'axios'
+import Select from 'react-select'
 import { Paper, FormGroup, FormLabel, Button, Grid, Typography } from '@material-ui/core';
 import { makeStyles } from '@material-ui/styles';
 
@@ -16,12 +17,33 @@ const useStyles = makeStyles(theme => ({
 function UpdateClientForm(props) {
     const classes = useStyles()
 
-    const [clientName, setClientName] = useState('')
     const [owner, setOwner] = useState('')
     const [email, setEmail] = useState('')
+    const [clientName, setClientName] = useState('')
+    const {setNotifier, setMsg} = useContext(NotifierContext)
+    const getAllClients = useContext(GetClientsContext)
+    const clients = useContext(ClientsContext)
+    const clientNames = clients.map(c => { return {value: c.name, label: c.name}})
+    
+    useEffect(() => {
+        getAllClients()
+    }, [])
 
     const updateClient = (action) => {
-        const updatedInfo = action === 'transfer' ? {owner} : action === 'send' ? {emailType: email} : action === 'sold' ? {sold: true} : null
+        let updatedInfo
+        if(action === 'transfer'){
+            updatedInfo = {owner}
+            setMsg(`${clientName} was transfered to ${owner}`)    
+            setNotifier(true)
+        } else if (action === 'send'){
+            updatedInfo = {emailType: email}
+            setMsg(`${email} type email was sent to ${clientName}`)    
+            setNotifier(true)
+        } else if (action === 'sold'){
+            updatedInfo = {sold: true}
+            setMsg(`${clientName} has purchased the product!`)    
+            setNotifier(true)
+        }
         axios.put('http://localhost:4000/client/' + clientName, updatedInfo)
     }
     
@@ -29,7 +51,7 @@ function UpdateClientForm(props) {
         <Paper className={classes.root}>
                 <FormLabel component='legend'>Update Client</FormLabel>
                 <FormGroup>
-                    <ClientNameInput value={clientName} setValue={setClientName}/>
+                    <Select state={clientName} onChange={clientName => {setClientName(clientName.value)}} defaultValue='Choose Client...' options={clientNames} />
                     <Grid container alignItems='center' justify='space-between'>
                         <Grid item>
                             <Typography variant='body1'>Transfer Ownership To</Typography>

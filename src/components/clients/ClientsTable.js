@@ -2,6 +2,7 @@ import React, { useState, useEffect, useContext } from 'react'
 import { ClientsContext, GetClientsContext } from '../../App'
 import { makeStyles } from '@material-ui/core/styles';
 import { Table, TableBody, TableRow, TableFooter, TablePagination, Paper, Container} from '@material-ui/core';
+import UpdateDetailsPopup from './UpdateDetailsPopup'
 import ClientsHeaders from './ClientsHeaders';
 import ClientRow from './ClientRow';
 import TablePaginationActions from './TablePaginationActions';
@@ -23,11 +24,21 @@ function ClientsTable(props) {
     const getAllClients = useContext(GetClientsContext)
     const [page, setPage] = useState(0);
     const [rowsPerPage, setRowsPerPage] = useState(5);
+    const [dialog, setDialog] = useState(false)
+    const [firstName, setFirstName] = useState('')
+    const [lastName, setLastName] = useState('')
+    const [country, setCountry] = useState('')
 
     useEffect(() => {
         getAllClients()
     }, [])
 
+    const openPopup = (clientName, clientCountry) => {
+        setFirstName(clientName.split(' ')[0])
+        setLastName(clientName.split(' ')[1])
+        setCountry(clientCountry)
+        setDialog(true)
+    }
 
   const emptyRows = rowsPerPage - Math.min(rowsPerPage, clients.length - page * rowsPerPage);
 
@@ -42,12 +53,18 @@ function ClientsTable(props) {
     
     return (
         <Container className='ClientsTable'>
+            <UpdateDetailsPopup
+            setDialog={setDialog} dialog={dialog}
+            firstName={firstName}
+            lastName={lastName}
+            country={country}
+            getAllClients={getAllClients} />
             <Paper className={classes.root}>
                 <Table className={classes.table}>
                     <ClientsHeaders />
                     <TableBody>
                     {clients.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map(c => {return (
-                        <ClientRow key={c['_id']} client={c} />
+                        <ClientRow key={c['_id']} client={c} openPopup={openPopup} />
                         )})}
                     </TableBody>
                     <TableFooter>
