@@ -1,12 +1,7 @@
 # CRM
 
-A React project made entirely from Material-ui components.
+My shot at a Customers Relations Management system, this React project is made entirely from Material-ui components.
 
-## Available Scripts
+## How to Run
 
-In the project directory, you can run:
-
-### `npm start`
-
-Runs the app in the development mode.<br>
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+Run `npm start` in the project directory, then go to [http://localhost:3000](http://localhost:3000) to view it in the browser.
