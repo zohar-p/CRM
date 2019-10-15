@@ -34,7 +34,7 @@ function AddClientForm(props) {
     const addClient = async () => {
         const name = formatName(firstName, lastName)
         const clientInfo = {name, email, country, owner, firstContact: new Date(), emailType: null, sold: false}
-        await axios.post('http://localhost:4000/client', clientInfo)
+        await axios.post(process.env.REACT_APP_API_URL + '/client', clientInfo)
         setMsg('Client Added')
         setNotifier(true)
         setFirstName('')

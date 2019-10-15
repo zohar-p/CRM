@@ -41,7 +41,7 @@ function Analytics() {
 
     useEffect(() => {
         if(dates.from){
-            const clients = axios.get(`http://localhost:4000/clients/?from=${dates.from}&to=${dates.to}`)
+            const clients = axios.get(`${process.env.REACT_APP_API_URL}/clients/?from=${dates.from}&to=${dates.to}`)
             clients.then(res => setData(res.data))
         }
     }, [dates])

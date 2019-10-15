@@ -25,7 +25,7 @@ function UpdateDetailsPopup(props) {
 
   const updateClient = async () => {
       handleClose()
-      await axios.put('http://localhost:4000/client/' + props.firstName+' '+props.lastName, {name: firstName+' '+lastName, country} )
+      await axios.put(process.env.REACT_APP_API_URL + '/client/' + props.firstName+' '+props.lastName, {name: firstName+' '+lastName, country} )
       setMsg(`${firstName} ${lastName} was updated`)    
       setNotifier(true)
       props.getAllClients()
