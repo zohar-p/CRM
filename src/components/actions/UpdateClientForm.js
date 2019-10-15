@@ -10,6 +10,12 @@ const useStyles = makeStyles(theme => ({
     root: {
         padding: '2rem',
         height: '100%'
+    },
+    title: {
+        marginBottom: '2rem'
+    },
+    row: {
+        marginBottom: '.8rem'
     }
 }))
 
@@ -49,42 +55,42 @@ function UpdateClientForm(props) {
     
     return (
         <Paper className={classes.root}>
-                <FormLabel component='legend'>Update Client</FormLabel>
-                <FormGroup>
-                    <Select state={clientName} onChange={clientName => {setClientName(clientName.value)}} defaultValue='Choose Client...' options={clientNames} />
-                    <Grid container alignItems='center' justify='space-between'>
-                        <Grid item>
-                            <Typography variant='body1'>Transfer Ownership To</Typography>
-                        </Grid>
-                        <Grid item>
-                            <SelectInput for='owner' setValue={setOwner}/>
-                        </Grid>
-                        <Grid item>
-                            <Button className={classes.btn} onClick={() => updateClient('transfer')} variant='contained' color='secondary'>Transfer</Button>
-                        </Grid>
+            <Typography className={classes.title} variant="h4">Update Client</Typography>
+            <FormGroup>
+                <Select className={classes.row} state={clientName} onChange={clientName => {setClientName(clientName.value)}} defaultValue='Choose Client...' options={clientNames} />
+                <Grid container alignItems='center' justify='space-between' className={classes.row}>
+                    <Grid item>
+                        <Typography variant='body1'>Transfer Ownership To</Typography>
                     </Grid>
-                    <Grid container alignItems='center' justify='space-between'>
-                        <Grid item>
-                            <Typography variant='body1'>Send Email</Typography>
-                        </Grid>
-                        <Grid item>
-                            <SelectInput for='email' setValue={setEmail}/>
-                        </Grid>
-                        <Grid item>
-                            <Button className={classes.btn} onClick={() => updateClient('send')} variant='contained' color='secondary'>Send</Button>
-                        </Grid>
+                    <Grid item>
+                        <SelectInput for='owner' setValue={setOwner}/>
                     </Grid>
-                    <Grid container alignItems='center' justify='space-between'>
-                        <Grid item>
-                            <Typography variant='body1'>Declare Sale</Typography>
-                        </Grid>
-                        <Grid item>
-                        </Grid>
-                        <Grid item>
-                            <Button className={classes.btn} onClick={() => updateClient('sold')} variant='contained' color='secondary'>Sold!</Button>
-                        </Grid>
+                    <Grid item>
+                        <Button className={classes.btn} onClick={() => updateClient('transfer')} variant='contained' color='secondary'>Transfer</Button>
                     </Grid>
-                </FormGroup>
+                </Grid>
+                <Grid container alignItems='center' justify='space-between' className={classes.row}>
+                    <Grid item>
+                        <Typography variant='body1'>Send Email</Typography>
+                    </Grid>
+                    <Grid item>
+                        <SelectInput for='email' setValue={setEmail}/>
+                    </Grid>
+                    <Grid item>
+                        <Button className={classes.btn} onClick={() => updateClient('send')} variant='contained' color='secondary'>Send</Button>
+                    </Grid>
+                </Grid>
+                <Grid container alignItems='center' justify='space-between'>
+                    <Grid item>
+                        <Typography variant='body1'>Declare Sale</Typography>
+                    </Grid>
+                    <Grid item>
+                    </Grid>
+                    <Grid item>
+                        <Button className={classes.btn} onClick={() => updateClient('sold')} variant='contained' color='secondary'>Sold!</Button>
+                    </Grid>
+                </Grid>
+            </FormGroup>
         </Paper>
     )
 }

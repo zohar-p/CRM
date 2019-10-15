@@ -10,8 +10,11 @@ const useStyles = makeStyles(theme => ({
         padding: '2rem',
         height: '100%'
     },
-    textField: {
+    title: {
         marginBottom: '1rem'
+    },
+    textField: {
+        marginBottom: '1.4rem'
     },
     btn: {
         marginTop: '2rem'
@@ -53,7 +56,7 @@ function AddClientForm(props) {
     return (
         <Paper className={classes.root}>
             <FormControl className={classes.formControl} component='fieldset'>
-                <Typography variant="h4" align="center">Add New Client</Typography>
+                <Typography className={classes.title} variant="h4" align="center">Add New Client</Typography>
                 <FormGroup>
                     <TextField id='first-name-input' value={firstName} onChange={e => setFirstName(e.target.value)} name='first_name' label='First Name' />
                     <TextField id='last-name-input' value={lastName} onChange={e => setLastName(e.target.value)} name='last_name' label='Last Name' />
