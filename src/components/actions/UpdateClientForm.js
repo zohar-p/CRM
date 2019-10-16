@@ -50,7 +50,7 @@ function UpdateClientForm(props) {
             setMsg(`${clientName} has purchased the product!`)    
             setNotifier(true)
         }
-        axios.put(process.env.REACT_APP_API_URL + '/client/' + clientName, updatedInfo)
+        axios.put('http://localhost:4000/client/' + clientName, updatedInfo)
     }
     
     return (

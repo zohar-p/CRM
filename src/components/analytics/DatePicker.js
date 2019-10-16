@@ -5,7 +5,6 @@ import DayPicker, { DateUtils } from 'react-day-picker';
 import moment from 'moment'
 import 'react-day-picker/lib/style.css';
 import { Typography, Button, Paper } from '@material-ui/core';
-import { makeStyles } from '@material-ui/styles';
 
 export default class Example extends React.Component {
   static defaultProps = {

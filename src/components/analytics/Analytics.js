@@ -1,9 +1,8 @@
 import React, { useEffect, useState, useContext, createContext } from 'react'
-import { GetClientsContext, ClientsContext } from '../../App'
+import { GetClientsContext } from '../../App'
 import Badges from './Badges'
 import Charts from './Charts'
 import DatePicker from './DatePicker'
-import moment from 'moment'
 import axios from 'axios'
 import { Container } from '@material-ui/core'
 
@@ -16,6 +15,8 @@ function Analytics() {
 
 
     const formatDataSalesByGroup = (group) => {
+        if(!group) {return}
+        group = group === 'email type' ? 'emailType' : group
         let SalesPerGroup = {}
         let chartData = []
 
@@ -28,7 +29,7 @@ function Analytics() {
                 }
             }
         })
-
+        
         for(let group in SalesPerGroup){
             chartData.push({group, sales: SalesPerGroup[group]})
         }
@@ -41,7 +42,7 @@ function Analytics() {
 
     useEffect(() => {
         if(dates.from){
-            const clients = axios.get(`${process.env.REACT_APP_API_URL}/clients/?from=${dates.from}&to=${dates.to}`)
+            const clients = axios.get(`http://localhost:4000/clients/?from=${dates.from}&to=${dates.to}`)
             clients.then(res => setData(res.data))
         }
     }, [dates])

@@ -1,13 +1,9 @@
-import React, {useState} from 'react'
-import {Snackbar, Slide, Typography} from '@material-ui/core';
+import React from 'react'
+import {Snackbar, Typography} from '@material-ui/core';
 
 
 function Notifier(props) {
-    // const [open, setOpen] = useState(props.open);
-  
-    // function handleClick() {
-    //   setOpen(true);
-    // }
+
   
     function handleClose(event, reason) {
       if (reason === 'clickaway') {

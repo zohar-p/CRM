@@ -1,7 +1,7 @@
 import React, { useState, useContext } from 'react'
 import SelectInput from './SelectInput'
 import axios from 'axios'
-import { Paper, FormControl, TextField, FormGroup, FormLabel, Button, Container, Typography} from '@material-ui/core'
+import { Paper, FormControl, TextField, FormGroup, Button, Typography} from '@material-ui/core'
 import { makeStyles } from '@material-ui/styles';
 import { NotifierContext, GetClientsContext } from '../../App';
 
@@ -42,7 +42,7 @@ function AddClientForm(props) {
     const addClient = async () => {
         const name = formatName(firstName, lastName)
         const clientInfo = {name, email, country, owner, firstContact: new Date(), emailType: null, sold: false}
-        await axios.post(process.env.REACT_APP_API_URL + '/client', clientInfo)
+        await axios.post('http://localhost:4000/client', clientInfo)
         setMsg('Client Added')
         setNotifier(true)
         setFirstName('')
