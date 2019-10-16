@@ -55,7 +55,7 @@ function UpdateClientForm(props) {
     
     return (
         <Paper className={classes.root}>
-            <Typography className={classes.title} variant="h4">Update Client</Typography>
+            <Typography className={classes.title} variant="h4" align="center">Update Client</Typography>
             <FormGroup>
                 <Select className={classes.row} state={clientName} onChange={clientName => {setClientName(clientName.value)}} defaultValue='Choose Client...' options={clientNames} />
                 <Grid container alignItems='center' justify='space-between' className={classes.row}>
