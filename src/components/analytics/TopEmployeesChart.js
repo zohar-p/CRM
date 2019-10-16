@@ -5,7 +5,7 @@ import { BarChart, Bar, CartesianGrid, XAxis, YAxis, ResponsiveContainer, Toolti
 function TopEmployeesChart(props) {
 
     return (
-        <ResponsiveContainer width='95%' aspect={1.0/1.0}>
+        <ResponsiveContainer width='85%' aspect={1.0/1.0}>
             <BarChart data={props.data}>
                 <CartesianGrid strokeDasharray='3 3' />
                 <XAxis dataKey='group' />

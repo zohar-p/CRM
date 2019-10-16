@@ -17,7 +17,7 @@ function SelectInput(props) {
     
     return (
         <Select value={value} onChange={e => changeValue(e)} displayEmpty name={props.for}>
-            <MenuItem value="">
+            <MenuItem value="" disabled>
                 <em>Choose {props.for[0].toUpperCase() + props.for.slice(1)}</em>
             </MenuItem>
             {options.map(o => {return (

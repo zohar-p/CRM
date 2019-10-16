@@ -16,6 +16,7 @@ function Analytics() {
 
 
     const formatDataSalesByGroup = (group) => {
+        if(!group) {return}
         group = group === 'email type' ? 'emailType' : group
         let SalesPerGroup = {}
         let chartData = []
