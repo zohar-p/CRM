@@ -1,8 +1,21 @@
+import './DatePicker.scss'
 import React from 'react';
 import Helmet from 'react-helmet';
 import DayPicker, { DateUtils } from 'react-day-picker';
 import moment from 'moment'
 import 'react-day-picker/lib/style.css';
+import { Typography, Button, Paper } from '@material-ui/core';
+import { makeStyles } from '@material-ui/styles';
+
+const useStyles = makeStyles(theme => ({
+  root: {
+    position: "fixed",
+    top: '80px',
+    left: '50%',
+    transform: 'translateX(-50%)'
+  }
+}))
+
 
 export default class Example extends React.Component {
   static defaultProps = {
@@ -19,7 +32,7 @@ export default class Example extends React.Component {
 
   getInitialState() {
     return {
-      from: moment().subtract(1, 'week')._d,
+      from: moment().subtract(1, 'year')._d,
       to: moment()._d,
     };
   }
@@ -34,33 +47,43 @@ export default class Example extends React.Component {
     this.setState(this.getInitialState());
   }
 
+  handleChangeClick() {
+
+  }
+
   render() {
     const { from, to } = this.state;
     const modifiers = { start: from, end: to };
     return (
-      <div className="RangeExample">
-        <p>
+      <Paper className="date-section">
+        <Typography display="inline" variant="body1">
           {!from && !to && 'Please select the first day.'}
           {from && !to && 'Please select the last day.'}
           {from &&
             to &&
-            `Selected from ${from.toLocaleDateString()} to
+            `Displaying data from ${from.toLocaleDateString()} to
                 ${to.toLocaleDateString()}`}{' '}
+        </Typography>
           {from && to && (
-            <button className="link" onClick={this.handleResetClick}>
-              Reset
-            </button>
+              <Button color="secondary" onClick={this.handleResetClick}>
+                Reset
+              </Button>
           )}
-        </p>
-        <DayPicker
-          className="Selectable"
-          numberOfMonths={this.props.numberOfMonths}
-          selectedDays={[from, { from, to }]}
-          modifiers={modifiers}
-          onDayClick={this.handleDayClick}
-        />
+          <div className="daypicker">
+            <DayPicker
+              className="Selectable"
+              numberOfMonths={this.props.numberOfMonths}
+              selectedDays={[from, { from, to }]}
+              modifiers={modifiers}
+              onDayClick={this.handleDayClick}
+              />
+          </div>
         <Helmet>
           <style>{`
+  .Selectable {
+    display: block;
+    margin: 0 auto;
+  }        
   .Selectable .DayPicker-Day--selected:not(.DayPicker-Day--start):not(.DayPicker-Day--end):not(.DayPicker-Day--outside) {
     background-color: #f0f8ff !important;
     color: #4a90e2;
@@ -78,7 +101,7 @@ export default class Example extends React.Component {
   }
 `}</style>
         </Helmet>
-      </div>
+      </Paper>
     );
   }
 }

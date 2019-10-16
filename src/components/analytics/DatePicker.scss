@@ -1,0 +1,17 @@
+.date-section {
+    padding: .6rem;
+    position: fixed;
+    top: 80px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 1000;
+
+    .daypicker {
+        display: none;
+    }
+    
+    &:hover .daypicker {
+        margin: 0 auto;
+        display: block;
+    }
+}
