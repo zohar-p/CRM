@@ -7,16 +7,6 @@ import 'react-day-picker/lib/style.css';
 import { Typography, Button, Paper } from '@material-ui/core';
 import { makeStyles } from '@material-ui/styles';
 
-const useStyles = makeStyles(theme => ({
-  root: {
-    position: "fixed",
-    top: '80px',
-    left: '50%',
-    transform: 'translateX(-50%)'
-  }
-}))
-
-
 export default class Example extends React.Component {
   static defaultProps = {
     numberOfMonths: 1,
@@ -45,10 +35,6 @@ export default class Example extends React.Component {
 
   handleResetClick() {
     this.setState(this.getInitialState());
-  }
-
-  handleChangeClick() {
-
   }
 
   render() {
