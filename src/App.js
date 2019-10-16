@@ -16,16 +16,15 @@ export const OwnersContext = createContext()
 export const EmailTypesContext = createContext()
 
 function App() {
-
   const owners = ['Emily Durham', 'Janice Alvarado', 'Leila Howe', 'Hull Conrad', 'Shepherd Stone', 'Martin Massey', 'Barton Ramirez']
   const emailTypes = ['A', 'B', 'C', 'D']
-
+  
   const [clients, setClients] = useState([])    
   const [notifier, setNotifier] = useState(false)
   const [msg, setMsg] = useState('')
 
   const getAllClients = async () => {
-    const allClients = await axios.get('http://localhost:4000/clients')
+    const allClients = await axios.get(process.env.REACT_APP_API_URL + '/clients')
     setClients(allClients.data)
   }
 
