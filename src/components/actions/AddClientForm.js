@@ -10,11 +10,19 @@ const useStyles = makeStyles(theme => ({
         padding: '2rem',
         height: '100%'
     },
-    textField: {
+    title: {
         marginBottom: '1rem'
+    },
+    textField: {
+        marginBottom: '1.4rem'
     },
     btn: {
         marginTop: '2rem'
+    },
+    formControl: {
+        display: 'flex',
+        margin: '0 auto',
+        maxWidth: '340px'
     }
 }))
 
@@ -47,13 +55,13 @@ function AddClientForm(props) {
 
     return (
         <Paper className={classes.root}>
-            <FormControl component='fieldset'>
-                <FormLabel component='legend'>Add New Client</FormLabel>
+            <FormControl className={classes.formControl} component='fieldset'>
+                <Typography className={classes.title} variant="h4" align="center">Add New Client</Typography>
                 <FormGroup>
                     <TextField id='first-name-input' value={firstName} onChange={e => setFirstName(e.target.value)} name='first_name' label='First Name' />
                     <TextField id='last-name-input' value={lastName} onChange={e => setLastName(e.target.value)} name='last_name' label='Last Name' />
                     <TextField id='email-input' value={email} onChange={e => setEmail(e.target.value)} name='email_address' label='Email Address' />
-                    <TextField id='country-input' value={country} onChange={e => setCountry(e.target.value)} name='country' label='Country' />
+                    <TextField className={classes.textField} id='country-input' value={country} onChange={e => setCountry(e.target.value)} name='country' label='Country' />
                     <SelectInput for='owner' setValue={setOwner}/>
                     <Button className={classes.btn} variant='contained' color='secondary' onClick={addClient}>Add Client</Button>
                 </FormGroup>
