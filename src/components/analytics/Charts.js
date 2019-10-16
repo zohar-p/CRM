@@ -2,7 +2,7 @@ import React, { useContext, useState } from 'react'
 import { FormatDataContext } from './Analytics'
 import TopEmployeesChart from './TopEmployeesChart';
 import SalesByCountryChart from './SalesByCountryChart';
-import { Grid, Typography, Paper, Fab, Icon, Button } from '@material-ui/core'
+import { Grid, Typography, Paper, Icon, Button } from '@material-ui/core'
 import SelectInput from '../actions/SelectInput';
 
 function Charts() {    

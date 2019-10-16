@@ -1,6 +1,5 @@
-import React, { useState , useEffect, createContext} from 'react';
-import ReactDOM from 'react-dom'
-import { BrowserRouter as Router, Route, Link } from 'react-router-dom'
+import React, { useState, createContext} from 'react';
+import { BrowserRouter as Router, Route } from 'react-router-dom'
 import axios from 'axios'
 import Topnav from './components/Topnav'
 import ClientsTable from './components/clients/ClientsTable'

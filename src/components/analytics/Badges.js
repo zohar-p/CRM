@@ -1,5 +1,4 @@
 import React, { useContext } from 'react'
-import { ClientsContext } from '../../App'
 import { FormatDataContext } from './Analytics'
 import { Grid, Card, CardContent } from '@material-ui/core'
 import { makeStyles } from '@material-ui/core/styles'

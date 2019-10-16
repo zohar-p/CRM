@@ -1,6 +1,5 @@
 import React, { useState } from 'react'
-import { Link } from 'react-router-dom'
-import { AppBar, Toolbar, Typography, Button } from '@material-ui/core';
+import { AppBar, Toolbar } from '@material-ui/core';
 import TopnavLink from './TopnavLink';
 import { makeStyles } from '@material-ui/core/styles'
 
