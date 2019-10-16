@@ -5,7 +5,8 @@ import { Select, MenuItem } from '@material-ui/core';
 function SelectInput(props) {
     const owners = useContext(OwnersContext)
     const emailTypes = useContext(EmailTypesContext)
-    const options = props.for === 'owner' ? owners : props.for === 'email' ? emailTypes : null
+    
+    const options = props.for === 'owner' ? owners : props.for === 'email' ? emailTypes : props.for === 'category' ? ['Owner', 'Country', 'Email type'] : null
 
     const [value, setValue] = useState('')
 

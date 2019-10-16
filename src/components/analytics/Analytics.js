@@ -16,6 +16,7 @@ function Analytics() {
 
 
     const formatDataSalesByGroup = (group) => {
+        group = group === 'email type' ? 'emailType' : group
         let SalesPerGroup = {}
         let chartData = []
 
@@ -28,7 +29,7 @@ function Analytics() {
                 }
             }
         })
-
+        
         for(let group in SalesPerGroup){
             chartData.push({group, sales: SalesPerGroup[group]})
         }

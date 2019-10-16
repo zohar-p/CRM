@@ -24,7 +24,7 @@ function App() {
   const [msg, setMsg] = useState('')
 
   const getAllClients = async () => {
-    const allClients = await axios.get(process.env.REACT_APP_API_URL + '/clients')
+    const allClients = await axios.get('http://localhost:4000/clients')
     setClients(allClients.data)
   }
 
