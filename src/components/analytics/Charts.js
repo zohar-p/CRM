@@ -34,7 +34,7 @@ function Charts() {
                         </Button>
                     </Grid>
                 </Grid>
-    {chart === 'bars' ?  <TopEmployeesChart data={formatDataSalesByGroup(category.toLowerCase())} /> : chart === 'pie' ? <SalesByCountryChart data={formatDataSalesByGroup(category.toLowerCase())} /> : null }
+                {chart === 'bars' ?  <TopEmployeesChart data={formatDataSalesByGroup(category.toLowerCase())} /> : chart === 'pie' ? <SalesByCountryChart data={formatDataSalesByGroup(category.toLowerCase())} /> : null }
             </Paper>
         </Grid>
         </Grid>

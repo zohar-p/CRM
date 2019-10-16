@@ -1,7 +1,6 @@
 import React from 'react'
 import { BarChart, Bar, CartesianGrid, XAxis, YAxis, ResponsiveContainer, Tooltip } from 'recharts'
 
-
 function TopEmployeesChart(props) {
 
     return (
