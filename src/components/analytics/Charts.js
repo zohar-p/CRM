@@ -4,6 +4,7 @@ import TopEmployeesChart from './TopEmployeesChart';
 import SalesByCountryChart from './SalesByCountryChart';
 import { Grid, Typography, Paper, Icon, Button } from '@material-ui/core'
 import SelectInput from '../actions/SelectInput';
+import SalesByTimeChart from './SalesByTimeChart';
 
 function Charts() {    
 
@@ -39,8 +40,8 @@ function Charts() {
             </Grid>
             <Grid item xs={12} md={8}>
                 <Paper>
-                    <Typography variant="h4" display="inline" align="center">Sales By Dates</Typography>
-                    
+                    <Typography variant="h4" align="center">Sales By Dates</Typography>
+                    <SalesByTimeChart data={formatDataSalesByGroup('firstContact')} />
                 </Paper>
             </Grid>
         </Grid>
