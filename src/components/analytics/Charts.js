@@ -4,6 +4,7 @@ import TopEmployeesChart from './TopEmployeesChart';
 import SalesByCountryChart from './SalesByCountryChart';
 import { Grid, Typography, Paper, Icon, Button } from '@material-ui/core'
 import SelectInput from '../actions/SelectInput';
+import SalesByTimeChart from './SalesByTimeChart';
 
 function Charts() {    
 
@@ -14,29 +15,35 @@ function Charts() {
 
     return (
         <Grid container spacing={3}>
-              <Grid item xs={12} md={6}>
-            <Paper>
-                <Grid container justify="center" alignItems="center" spacing={1}>
-                    <Grid item>
-                    <Typography variant='h4' display="inline">Sales By</Typography>
+            <Grid item xs={12} md={4}>
+                <Paper>
+                    <Grid container justify="center" alignItems="center" spacing={1}>
+                        <Grid item xs={6}>
+                        <Typography variant='h4' align="center">Sales By</Typography>
+                        </Grid>
+                        <Grid item xs={6}>
+                        <SelectInput for="category" setValue={setCategory}></SelectInput>
+                        </Grid>
+                        <Grid item>
+                            <Button color="primary" variant="contained" onClick={() => setChart('pie')}>
+                                <Icon>pie_chart</Icon>
+                            </Button>
+                        </Grid>
+                        <Grid item>
+                            <Button color="primary" variant="contained" onClick={() => setChart('bars')}>
+                                <Icon>bar_chart</Icon>
+                            </Button>
+                        </Grid>
                     </Grid>
-                    <Grid item>
-                    <SelectInput for="category" setValue={setCategory}></SelectInput>
-                    </Grid>
-                    <Grid item>
-                        <Button color="primary" variant="contained" onClick={() => setChart('pie')}>
-                            <Icon>pie_chart</Icon>
-                        </Button>
-                    </Grid>
-                    <Grid item>
-                        <Button color="primary" variant="contained" onClick={() => setChart('bars')}>
-                            <Icon>bar_chart</Icon>
-                        </Button>
-                    </Grid>
-                </Grid>
-                {chart === 'bars' ?  <TopEmployeesChart data={formatDataSalesByGroup(category.toLowerCase())} /> : chart === 'pie' ? <SalesByCountryChart data={formatDataSalesByGroup(category.toLowerCase())} /> : null }
-            </Paper>
-        </Grid>
+                    {chart === 'bars' ?  <TopEmployeesChart data={formatDataSalesByGroup(category.toLowerCase())} /> : chart === 'pie' ? <SalesByCountryChart data={formatDataSalesByGroup(category.toLowerCase())} /> : null }
+                </Paper>
+            </Grid>
+            <Grid item xs={12} md={8}>
+                <Paper>
+                    <Typography variant="h4" align="center">Sales By Dates</Typography>
+                    <SalesByTimeChart data={formatDataSalesByGroup('firstContact')} />
+                </Paper>
+            </Grid>
         </Grid>
     )
 }

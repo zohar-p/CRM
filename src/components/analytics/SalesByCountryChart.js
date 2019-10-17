@@ -14,7 +14,7 @@ function SalesByCountryChart(props) {
     const classes = useStyles()
 
     return (
-        <ResponsiveContainer className={classes.root} width='85%' aspect={1.0/1.0}>
+        <ResponsiveContainer className={classes.root} width='95%' aspect={1.0/1.0}>
             <PieChart>
                 <Pie data={props.data} dataKey='sales' nameKey='group' label>
                     <LabelList position="inside" />

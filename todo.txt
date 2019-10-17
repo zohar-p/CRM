@@ -1,2 +1,4 @@
 - change charts
 - Search client
+- Rotate bar charts
+- fix labels on pie chart
